@@ -5,30 +5,31 @@ function getRecipes() {
 }
 
 function getShoppingList(id) {
-    return db('ingredients_needed').where({recipe_id: id})
-}
+    return git db("ingredients").join(
+        "ingredients_needed",
+        "ingredients_needed.ingredient_id",
+        "=",
+        "ingredients.id"
+      ).where({recipe_id:id}).select('ingredients.name', 'ingredient_quantity')
+  }
+
+
+/*
+SQL:
+
+select ingredients.name, ingredient_quantity
+from ingredients_needed
+join ingregdients
+on ingredients_needed.ingredient_id = ingredients.id
+where recipe_id = 2;
+
+order_by desc asc
+
+*/
 
 function getInstructions(id) {
     return db('instructions').where({recipe_id: id})
 }
-// function add({scheme_name}) {
-//     return db('schemes')
-//         .insert({scheme_name})
-// }
-
-// function remove(id) {
-//     return db('schemes').where({id}).del()
-// }
-
-// function findSteps(id) {
-//     return db('steps').where({ id })
-//   }
-
-//   function update(changes, id) {
-//     return db("schemes")
-//       .where({ id: id })
-//       .update(changes);
-//   }
 
 module.exports = {
     getRecipes,

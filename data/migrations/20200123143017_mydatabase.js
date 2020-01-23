@@ -33,7 +33,7 @@ exports.up = function(knex) {
           .notNullable()
           .references('id')
           .inTable('ingredients')
-        tbl.integer('ingredient_quantity')
+        tbl.float('ingredient_quantity')
           .notNullable()
       })
   };
