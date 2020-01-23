@@ -5,7 +5,7 @@ function getRecipes() {
 }
 
 function getShoppingList(id) {
-    return git db("ingredients").join(
+    return db("ingredients").join(
         "ingredients_needed",
         "ingredients_needed.ingredient_id",
         "=",
